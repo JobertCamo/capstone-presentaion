@@ -136,8 +136,8 @@ class extends Component {
                 </div>
             @else
                 <div class="flex flex-col  cards space-y-2 relative" x-show="details" lazy x-transition x-cloak>
-                    
-                    <p class="font-bold text-2xl">{{ $firstJob->title }}</p>
+
+                    <p class="font-bold text-2xl">{{ $firstJob->title}}</p>
                     <ul class="list-disc list-inside text-gray-700">
                         <li>{{ $firstJob->salary }}</li>
                         <li>{{ $firstJob->description }}</li>
