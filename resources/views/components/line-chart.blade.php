@@ -51,7 +51,7 @@
                     },
                     tooltip: {
                         enabled: true,
-                        backgroundColor: 'black', // Black tooltip background
+                        backgroundColor: 'white', // Black tooltip background
                         titleColor: 'white', // White text inside tooltips
                         bodyColor: 'white'
                     }

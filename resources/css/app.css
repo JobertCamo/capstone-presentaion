@@ -6,23 +6,15 @@
 
 @keyframes border-rotate {
     0% {
-      border-color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
     }
     50% {
-      border-color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 1);
     }
     100% {
-      border-color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
     }
-  }
-
-  .animate-border-rotate:hover {
-    animation: border-rotate 0.5ms linear infinite;
-  }
-
-/*.side{
-    @apply p-3 my-2 duration-75 rounded-full hover:border-b-[1px] border-[#CBCBCB] ;
-}*/
+}
 .side a{
     @apply p-3 my-2 duration-75 rounded-md hover:bg-[#7c7c7c28] block;
 }
@@ -37,53 +29,53 @@
     @apply rotate-90; /* Rotate the arrow when the parent is hovered */
 }
 .inputs{
-  @apply w-full h-8 p-3 text-white bg-gray-600 rounded-md md:w-full lg:w-full hover:ring-2 hover:ring-slate-400 lg:h-8 md:h-5;
+    @apply w-full h-8 p-3 text-white bg-gray-600 rounded-md md:w-full lg:w-full hover:ring-2 hover:ring-slate-400 lg:h-8 md:h-5;
 }
 .sp{
-  @apply md:space-y-0 lg:space-y-2;
+    @apply md:space-y-0 lg:space-y-2;
 }
 .drop{
-  @apply w-full bg-gray-600 border-0 rounded-md h-9 hover:ring-2 hover:ring-slate-400;
+    @apply w-full bg-gray-600 border-0 rounded-md h-9 hover:ring-2 hover:ring-slate-400;
 }
 .card{
-  @apply w-full p-3 bg-white drop-shadow-xl ring-gray-300 ring-opacity-50 hover:ring-2  hover:ring-yellow-500 rounded-md h-fit ring-1;
+    @apply w-full p-3 bg-white drop-shadow-xl ring-gray-300 ring-opacity-50 hover:ring-2  hover:ring-yellow-500 rounded-md h-fit ring-1;
 }
 .cards{
-  @apply w-full p-3 bg-white drop-shadow-xl ring-black ring-opacity-5 rounded-md h-fit ring-1;
+    @apply w-full p-3 bg-white drop-shadow-xl ring-black ring-opacity-5 rounded-md h-fit ring-1;
 }
 .jobtype{
-  @apply text-2xl font-bold hover:underline text-black;
+    @apply text-2xl font-bold hover:underline text-black;
 }
 .dept{
-  @apply  my-1 text-gray-700 ;
+    @apply  my-1 text-gray-700 ;
 }
 .smoldesc{
-  @apply mt-1 text-gray-700;
+    @apply mt-1 text-gray-700;
 }
 
 .time{
-  @apply self-end p-1 text-gray-600 font-bold w-fit h-fit;
+    @apply self-end p-1 text-gray-600 font-bold w-fit h-fit;
 }
 .headsearch{
   /* background-image: url(/public/images/bg.png); */
-  background: rgb(245,249,249);
-  background: linear-gradient(0deg, rgba(245,249,249,1) 26%, rgba(245,180,81,1) 100%);
+    background: rgb(245,249,249);
+    background: linear-gradient(0deg, rgba(245,249,249,1) 26%, rgba(245,180,81,1) 100%);
 }
 .jobsortopt{
-  @apply w-[30%] p-1 bg-gray-300 rounded-2xl;
+    @apply w-[30%] p-1 bg-gray-300 rounded-2xl;
 }
 
 .count-card{
-    @apply  flex items-center justify-between w-[45%] h-[45%] p-4 rounded-3xl m-2;
+    @apply  flex items-center justify-between w-[45%] h-[45%] md:w-[20%] lg:w-[45%] p-4 rounded-xl m-2;
 }
 .count-card, .line, .candidate-card{
-   background-image: url(/public/images/bgimage.png);
+    background-image: url(/public/images/bgimage.png);
 }
 .label-count{
     @apply text-lg font-bold text-white;
 }
 .candidate-card{
-    @apply bg-gray-300 lg:h-[95%] h-[25%] w-[100%] m-2 rounded-3xl md:w-[45%] md:h-[40%] sm:w-[45%] sm:h-[40%]  p-4 text-2xl font-bold;
+    @apply min-h-[150px] lg:w-[250px] md:w-[300px]  w-[300px] rounded-lg m-2 p-2 font-bold text-2xl;
 }
 .custom-radio{
     @apply w-36 h-36;
@@ -102,7 +94,7 @@
 
 /* Scrollbar */
 .scrollbar-custom::-webkit-scrollbar {
-  width: 0px;
+    width: 0px;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -115,14 +107,14 @@
 }
 
 .scrollbar-custom::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background: #ffff;
-  border-radius: 5px;
+    background: #ffff;
+    border-radius: 5px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background: #ffff;
+    background: #ffff;
 }

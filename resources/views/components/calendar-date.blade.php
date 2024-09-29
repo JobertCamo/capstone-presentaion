@@ -1,5 +1,5 @@
 
-<div x-data="calendar()" class="w-full h-full p-4 bg-white rounded-lg shadow-lg ">
+<div x-data="calendar()" class="p-4 bg-white rounded-lg shadow-lg ">
     <!-- Month navigation -->
     <div class="flex items-center justify-between font-bold text-2xl mx-2">
         <x-heroicon-s-chevron-left class="w-8 h-8 stroke-[3]" @click="prevMonth" />
