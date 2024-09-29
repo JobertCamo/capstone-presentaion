@@ -10,11 +10,11 @@
         </div>
 
         <!-- Main content section, divided into two parts: statistics and chart -->
-        <div class="lg:h-[50%] h-full rounded-lg"> <!-- Main content wrapper, handles the height for large screens and smaller screens -->
+        <div class="lg:h-[50%] rounded-lg"> <!-- Main content wrapper, handles the height for large screens and smaller screens -->
             <div class="flex w-full lg:flex-row h-full flex-col"> <!-- Flex container for statistics cards and chart, switches layout based on screen size -->
 
                 <!-- Left section: Statistics cards -->
-                <div class="lg:w-[50%] h-[50%] lg:h-[100%] flex flex-wrap items-center justify-center space-x-3 md:h-[40%]">
+                <div class="lg:w-[50%] h-[50%] lg:h-[100%] flex flex-wrap items-center justify-center md:h-[40%]">
 
                     <!-- Individual statistics card: New Applicants -->
                     <div class="count-card">
@@ -54,10 +54,10 @@
                 </div>
 
                 <!-- Right section: Chart display -->
-                <div class="lg:w-[50%] h-[50%] lg:h-[100%] flex flex-col items-center justify-center">
-                    <x-card shadow="xl" class="w-[95%] lg:w-[95%] md:h-[90%] sm:w-[90%] h-full m-2 line text-black"> <!-- Card container for the chart -->
-                        <x-line-chart class="h-full"/> <!-- Line chart displayed within the card -->
-                    </x-card>
+                <div class="lg:w-[50%]  flex flex-col items-center justify-center">
+                    <div shadow="xl" class="w-[95%] lg:w-[95%] md:h-[90%] sm:w-[90%]  m-2 line text-black"> <!-- Card container for the chart -->
+                        <x-line-chart /> <!-- Line chart displayed within the card -->
+                    </div>
                 </div>
 
             </div>
@@ -67,7 +67,7 @@
         <div class="h-[70%] mt-5 w-full"> <!-- Bottom section wrapper, containing filters, buttons, and table -->
 
             <!-- Filter and Add New Applicant button area -->
-            <div class="flex bg-black w-full lg:justify-between md:justify-between justify-evenly items-center px-2 h-[20%]">
+            <div class="flex w-full lg:justify-between md:justify-between justify-evenly items-center px-2 h-[20%]">
 
                 <!-- Search input for applicant names -->
                 <div class="lg:w-[20%] md:w-[20%] m-5">

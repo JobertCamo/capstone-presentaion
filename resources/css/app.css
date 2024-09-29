@@ -74,7 +74,7 @@
 }
 
 .count-card{
-    @apply  flex items-center justify-between w-[45%] h-[45%] p-4 rounded-3xl;
+    @apply  flex items-center justify-between w-[45%] h-[45%] p-4 rounded-3xl m-2;
 }
 .count-card, .line, .candidate-card{
    background-image: url(/public/images/bgimage.png);

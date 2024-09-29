@@ -67,7 +67,7 @@ class extends Component {
     x-data="{ details: open }">
     <div class="lg:w-[90%] h-full flex overflow-hidden md:w-[85%] sm:w[80%] w-[90%]">
         <!-- Left Column -->
-        <div class="flex-1 h-full px-5 space-y-5 overflow-auto scrollbar-custom overflow-y-scroll">
+        <div class="flex-1 h-full px-5 space-y-5 overflow-auto scrollbar-custom overflow-y-scroll scroll-smooth">
             <div class="bg-white sticky top-0 z-10 space-y-3 pt-3 ">
                 <div class="flex items-center justify-center mx-2 lg:justify-start">
                     <!-- Job Category Title -->
@@ -111,7 +111,7 @@ class extends Component {
         </div>
 
         <!-- Right Column for Sorting Component (Responsive) -->
-        <div class="space-y-3 flex-1 hidden h-full justify-center p-4 lg:basis-52 md:basis lg:flex md:flex sm:hidden relative">
+        <div class="space-y-3 flex-1 hidden h-full justify-center p-4 lg:basis-52 md:basis lg:flex md:flex sm:hidden relative overflow-auto hide-scrollbar scroll-smooth">
             {{-- <x-usercomponent.jobsorting /> --}}
             @if (isset($test))
 
@@ -137,7 +137,7 @@ class extends Component {
             @else
                 <div class="flex flex-col  cards space-y-2 relative" x-show="details" lazy x-transition x-cloak>
 
-                    <p class="font-bold text-2xl">{{ $firstJob->title}}</p>
+                    <p class="font-bold text-2xl">{{ $firstJob->title }}</p>
                     <ul class="list-disc list-inside text-gray-700">
                         <li>{{ $firstJob->salary }}</li>
                         <li>{{ $firstJob->description }}</li>

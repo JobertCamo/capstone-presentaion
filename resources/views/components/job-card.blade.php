@@ -9,9 +9,9 @@ use Carbon\Carbon;
         <x-mini-button white solid solid class=" absolute top-2 right-2 w-7 h-7">
             <x-icon name="bookmark" />
         </x-mini-button>
-        <h1 class="text-lg font-semibold jobtype sm:text-base md:text-lg lg:text-xl">{{ $job->title }}</h1>
-        <span class="text-gray-700 dept sm:text-sm md:text-base">{{ $job->location }}</span>
-        <p class="text-sm text-gray-600 smoldesc sm:text-xs md:text-sm lg:text-base mb-6">
+        <h1 class="text-lg font-semibold jobtype sm:text-base md:text-lg lg:text-xl break-all">{{ $job->title }}</h1>
+        <span class="text-gray-700 dept sm:text-sm md:text-base break-all">{{ $job->location }}</span>
+        <p class="text-sm text-gray-600 smoldesc sm:text-xs md:text-sm lg:text-base mb-6 break-all">
             {{ Str::limit($job->description, 200) }}
         </p>
         <div class="flex justify-between items-center">

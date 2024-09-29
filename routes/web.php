@@ -32,6 +32,9 @@ Route::get('/setting', function () {
 Route::get('/notifs', function () {
     return view('julsfolder.notifications');
 });
+Route::get('/employees', function () {
+    return view('julsfolder.employee-list');
+});
 
 
 Volt::route('/jobpost', 'guest.job-post');

@@ -12,11 +12,11 @@
 </head>
 <body class="h-full overflow-hidden bg-no-repeat bg-slate-200 text-black font-roboto scrollbar-thin">
     <!--NAVBAR-->
-    <nav class="sticky top-0 z-10 w-full text-black">
+    <nav class=" top-0 z-10 w-full text-black">
         <div class="flex bg-amber-400/95 h-16 items-center p-5 justify-between flex-row drop-shadow-md cursor-pointer">
             <!--LEFTNAV-->
             <ul class="flex flex-row items-center Lightnav space-x-5 text-purple-800">
-                <li><x-heroicon-s-bars-3 class="hidden size-6 lg:block md:block sm:block hover:text-purple-800" onclick="toggleSidebar()"/></li>
+                <li><x-heroicon-s-bars-3 class=" size-6  hover:text-purple-800" onclick="toggleSidebar()"/></li>
                 <li class="hidden lg:block md:block font-bold text-xl">HR Recruitment Applicant Management System</li>
             </ul>
                 <!--RIGHT NAV-->
@@ -46,57 +46,103 @@
         </div>
     </nav>
 
+    <div class="flex">
+        <div class="transition-all duration-500 absolute lg:static w-[300px] hidden lg:block" id="phonesidebar">
+            <aside class="h-screen">
+                <div class="flex flex-col bg-gradient-to-b from-[#a68c00] to-[#896800]  h-screen p-2 shadow-right-light cursor-pointer text-white scrollbar-hidden">
+                    <ul class="flex flex-col gap-2 p-2 bg-opacity-0 transition-all duration-500" id="phonesidebarcontent" >
+                        <label for="menu" class="border-none titlesidebar">Menu</label>
+                        <label for="EMPLOYEE ENGANEMENT" ></label>
+                        <div x-data="{ open: true }">
+                            <button x-on:click="open = ! open" class="titlesidebar">Recruitment
+                                <span :class="open ? 'rotate-90' : 'rotate-0'" class="arrow transition-transform duration-300 inline-block">
+                                    <x-heroicon-s-chevron-right/>
+                                </span>
+                            </button>
+                            <div x-show="open"
+                                    x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0 translate-y-2"
+                                    x-transition:enter-end="opacity-100 translate-y-0"
+                                    x-transition:leave="transition ease-in duration-200"
+                                    x-transition:leave-start="opacity-100 translate-y-0"
+                                    x-transition:leave-end="opacity-0 translate-y-2">
 
-    <!--SIDEBAR-->
-    <div class="transition-all duration-500 relative lg:flex md:flex sm:flex  md:w-[23%] sm:w-[25%] hidden" id="sidebar">
-        <aside class="absolute h-screen" >
-            <div class="flex flex-col bg-gradient-to-b from-[#a68c00] to-[#896800] lg:w-[95%] md:w-[90%] sg:w-[85%] tb:w-[90%] xl:w-[120%] 2xl:w-[120%] h-screen overflow-y-auto p-2 max-w-[120%] shadow-right-light cursor-pointer text-white scrollbar-hidden">
-                <ul class="flex flex-col gap-2 p-2 bg-opacity-0" >
-                    <label for="menu" class="border-none titlesidebar">Menu</label>
-                    <label for="EMPLOYEE ENGANEMENT" ></label>
-                    <div x-data="{ open: true }">
-                        <button x-on:click="open = ! open" class="titlesidebar">Recruitment
-                            <span :class="open ? 'rotate-90' : 'rotate-0'" class="arrow transition-transform duration-300 inline-block">
-                                <x-heroicon-s-chevron-right/>
-                            </span>
-                        </button>
-                        <div x-show="open"
-                                x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0 translate-y-2"
-                                x-transition:enter-end="opacity-100 translate-y-0"
-                                x-transition:leave="transition ease-in duration-200"
-                                x-transition:leave-start="opacity-100 translate-y-0"
-                                x-transition:leave-end="opacity-0 translate-y-2">
+                                <li class="side"><a wire:navigate.hover href="{{ url('/job-create') }}">Job Creation</a></li>
+                                <li class="side"><a wire:navigate.hover href="{{ url('/jobpost') }}">Posting</a></li>
+                                <li class="side"><a wire:navigate.hover href="{{ url('/application') }}">Application Form</a></li>
+                                <li class="side"><a wire:navigate.hover href="{{ url('/exam') }}">Initial Questions</a></li>
 
-                            <li class="side"><a wire:navigate.hover href="{{ url('/job-create') }}">Job Creation</a></li>
-                            <li class="side"><a wire:navigate.hover href="{{ url('/jobpost') }}">Posting</a></li>
-                            <li class="side"><a wire:navigate.hover href="{{ url('/application') }}">Application Form</a></li>
-                            <li class="side"><a wire:navigate.hover href="{{ url('/exam') }}">Initial Questions</a></li>
-
+                            </div>
                         </div>
-                    </div>
-                    <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Applicant Tracking</label>
-                    <li class="side"><a wire:navigate.hover href="{{ url('/applicant-list') }}">Applicants</a></li>
-                    <li class="side"><a wire:navigate.hover href="{{ url('/candidates') }}">Candidates</a></li>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Applicant Tracking</label>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/applicant-list') }}">Applicants</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/candidates') }}">Candidates</a></li>
 
-                    <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Onboarding</label>
-                    <li class="side"><a wire:navigate.hover href="{{ url('/application') }}">Employee List</a></li>
-                    <li class="side"><a wire:navigate.hover href="{{ url('/jobscript') }}">Task List</a></li>
-                    <li class="side"><a wire:navigate.hover href="{{ url('/onboard') }}">Task Creation</a></li>
-                    <li class="side"><a wire:navigate.hover href="{{ url('/initial') }}">Document Management</a></li>
-                    <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Learning Managment</label>
-                </ul>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Onboarding</label>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/employees') }}">Employee List</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/jobscript') }}">Task List</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/onboard') }}">Task Creation</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/initial') }}">Document Management</a></li>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Learning Managment</label>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <div class="transition-all z-70 duration-500 absolute lg:hidden w-[300px]" id="phonebar">
+            <aside class="h-screen">
+                <div class="flex flex-col bg-gradient-to-b from-[#a68c00] to-[#896800]  h-screen p-2 shadow-right-light cursor-pointer text-white scrollbar-hidden">
+                    <ul class="flex flex-col gap-2 p-2 bg-opacity-0 transition-all duration-500" id="phonebarcontent" >
+                        <label for="menu" class="border-none titlesidebar">Menu</label>
+                        <label for="EMPLOYEE ENGANEMENT" ></label>
+                        <div x-data="{ open: true }">
+                            <button x-on:click="open = ! open" class="titlesidebar">Recruitment
+                                <span :class="open ? 'rotate-90' : 'rotate-0'" class="arrow transition-transform duration-300 inline-block">
+                                    <x-heroicon-s-chevron-right/>
+                                </span>
+                            </button>
+                            <div x-show="open"
+                                    x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0 translate-y-2"
+                                    x-transition:enter-end="opacity-100 translate-y-0"
+                                    x-transition:leave="transition ease-in duration-200"
+                                    x-transition:leave-start="opacity-100 translate-y-0"
+                                    x-transition:leave-end="opacity-0 translate-y-2">
+
+                                <li class="side"><a wire:navigate.hover href="{{ url('/job-create') }}">Job Creation</a></li>
+                                <li class="side"><a wire:navigate.hover href="{{ url('/jobpost') }}">Posting</a></li>
+                                <li class="side"><a wire:navigate.hover href="{{ url('/application') }}">Application Form</a></li>
+                                <li class="side"><a wire:navigate.hover href="{{ url('/exam') }}">Initial Questions</a></li>
+
+                            </div>
+                        </div>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Applicant Tracking</label>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/applicant-list') }}">Applicants</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/candidates') }}">Candidates</a></li>
+
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Onboarding</label>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/employees') }}">Employee List</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/jobscript') }}">Task List</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/onboard') }}">Task Creation</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/initial') }}">Document Management</a></li>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Learning Managment</label>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <div class="flex h-screen w-full scrollbar-thin"> <!--CONTENT CONTAINER-->
+            <div id="content" class=" overflow-auto transition-all duration-500 h-full w-full scrollbar-thin">
+                <main class="w-full h-full">
+                    {{$slot}}  <!--CONTENT LOAD-->
+                </main>
             </div>
-        </aside>
-    </div>
-
-    <div class="flex h-screen w-full scrollbar-thin"> <!--CONTENT CONTAINER-->
-        <div id="content" class=" overflow-auto transition-all duration-500 ml-[20%] h-full w-full scrollbar-thin">
-            <main class="w-full h-full">
-                {{$slot}}  <!--CONTENT LOAD-->
-            </main>
         </div>
     </div>
+    <!--SIDEBAR-->
+
+
+
     @livewireScripts
 </body>
 </html>

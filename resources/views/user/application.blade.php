@@ -15,10 +15,10 @@
         <div class="w-full h-screen grow"><!--Container for 2 DIV-->
             <div class="flex-1 h-[50%] md:h-[60%]">
                 @php
-                    $tae = "taes";   
+                    $tae = "taes";
                 @endphp
                 <div class="flex justify-center h-full">
-                    <div class="w-full h-full ">  
+                    <div class="w-full h-full ">
                         <x-usercomponent.jobscript />
                     </div>
                 </div>
