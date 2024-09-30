@@ -9,7 +9,7 @@
     <title>Job Posting</title>
     @livewireStyles
 </head>
-<body class="h-full bg-no-repeat overflow-scrol bg-no-repea bg-slate-100 text-cb font-roboto ">
+<body class="h-full bg-no-repeat overflow-scrol bg-slate-100 text-cb font-roboto ">
     <nav>
         <x-usercomponent.usernav/>
     </nav>

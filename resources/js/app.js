@@ -5,25 +5,28 @@ import './function';
 window.toggleSidebar = function() {
     const sidebar = document.getElementById('sidebar');
     const sidebarContent = document.getElementById('sidebarcontent');
+    const iconside = document.getElementById('iconside');
 
     // Check if the sidebar is expanded or collapsed
     if (sidebar.classList.contains('w-[300px]')) {
         // Collapse sidebar to small size
         sidebar.classList.remove('w-[300px]');
         sidebar.classList.add('w-[60px]');
+        iconside.classList.remove('hidden')
 
         // Handle sidebar content transition (fade out, collapse)
-        sidebarContent.classList.add('opacity-0', 'max-h-0');
+        sidebarContent.classList.add('hidden', 'max-h-0');
         sidebarContent.classList.add('invisible'); // Make content invisible after animation
     } else {
         // Expand sidebar to full size
         sidebar.classList.remove('w-[60px]');
         sidebar.classList.add('w-[300px]');
+        iconside.classList.add('hidden')
 
         // Handle sidebar content transition (fade in, expand)
         sidebarContent.classList.remove('invisible');
         sidebarContent.classList.remove('max-h-0');
-        sidebarContent.classList.remove('opacity-0'); // Make content visible immediately
+        sidebarContent.classList.remove('hidden'); // Make content visible immediately
     }
 };
 
@@ -42,6 +45,16 @@ window.togglePhoneSidebar = function() {
         phonebar.classList.add('-translate-x-full');
     }
 };
+
+function scrollToApplicantsTable() {
+    const table = document.getElementById('applicant-table');
+    if (table) {
+        console.log("Scrolling to applicants table.");
+        table.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        console.log("Applicant table not found.");
+    }
+}
 
 // Ensure the sidebar starts visible on larger screens
 // (You can uncomment this section if needed for specific layout requirements)

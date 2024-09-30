@@ -36,8 +36,6 @@ Route::get('/employees', function () {
     return view('julsfolder.employee-list');
 });
 
-
-Volt::route('/jobpost', 'guest.job-post');
 Volt::route('/application/{job:title}', 'guest.app-form');
 
 Volt::route('main', 'hr.main-layout');

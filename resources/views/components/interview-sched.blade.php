@@ -1,9 +1,9 @@
 <div class="flex font-bold lg:text-xl md:text-sm justify-between mb-2 items-center ">
-    <p>Up Comming Sched</p>
+    <p>Up Comming Interview Schedule</p>
     <div x-data="{ open: false }">
-        <x-button x-on:click="open = ! open"  amber label="Add New Applicant"></x-button>
+        <x-button x-on:click="open = ! open"  amber label="Add Schedule"></x-button>
         <div  x-cloak x-transition x-show="open" class=" absolute inset-0  z-10 flex items-center justify-center bg-black/40 ">
-            <div @click.away="open = false" class="bg-amber-500 lg:w-fit w-fit h-fit flex justify-center items-center p-3 rounded-2xl">
+            <div @click.away="open = false" class="modal-add lg:w-fit w-fit h-fit flex justify-center items-center p-3 rounded-2xl">
                 <x-modal-schedule>
 
                 </x-modal-schedule>

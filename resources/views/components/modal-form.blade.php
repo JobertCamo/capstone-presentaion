@@ -1,7 +1,7 @@
 <div>
     <form action="">
         <fieldset class=" p-4 border-2 w-fit rounded-2xl">
-            <legend class=" font-bold text-2xl">Add Applicants</legend>
+            <legend class=" font-bold text-2xl text-amber-600">Add Applicants</legend>
             <div class="flex ">
                 <div class="flex space-x-3">
                     <div>
