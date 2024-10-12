@@ -9,23 +9,18 @@
 
         // Sample data for the chart
         const data = [
-            { month: 'January', count: 30 },
+            { month: 'January', count: 45 },
             { month: 'February', count: 45 },
-            { month: 'March', count: 60 },
-            { month: 'April', count: 40 },
-            { month: 'May', count: 50 },
-            { month: 'June', count: 70 },
-            { month: 'July', count: 65 },
-            { month: 'August', count: 55 },
-            { month: 'September', count: 75 },
-            { month: 'October', count: 85 },
-            { month: 'November', count: 90 },
-            { month: 'December', count: 95 }
+            { month: 'March', count: 100 },
+            { month: 'April', count: 45 },
+            { month: 'May', count: 45 },
+            { month: 'June', count: 20 },
+            
         ];
 
         // Initialize the chart
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: data.map(row => row.month),
                 datasets: [

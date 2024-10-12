@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Applicant;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -12,15 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignIdFor(User::class);
-            $table->string('title');
-            $table->string('description');
-            $table->string('requirements');
-            $table->string('salary');
+        Schema::create('interviews', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Applicant::class)->constrained()->cascadeOnDelete();
+            $table->dateTime('interview_date');
             $table->string('location');
-            $table->string('schedule')->default('Full Time');
+            $table->string('interviewer');
+            $table->enum('status', ['scheduled', 'completed', 'failed', 'canceled']);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('interviews');
     }
 };

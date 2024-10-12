@@ -138,3 +138,31 @@
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
     background: #ffff;
 }
+/* Progress bar */
+progress {
+    /* Removes the default styling */
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #eee; /* Background bar color */
+    overflow: hidden;
+  }
+  
+  /* WebKit-based browsers */
+  progress::-webkit-progress-bar {
+    background-color: #eee; /* Custom background bar */
+    border-radius: 10px;
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #1eff00; /* Custom progress bar color */
+    border-radius: 10px 0 0 10px; /* Rounds the start of the bar */
+  }
+  
+  /* Firefox */
+  progress::-moz-progress-bar {
+    background-color: #1eff00; /* Custom progress bar color */
+    border-radius: 10px 0 0 10px; /* Rounds the start of the bar */
+  }

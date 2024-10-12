@@ -1,14 +1,34 @@
 <?php
 
 use App\Models\Job;
+use App\Models\Applicant;
+use GeminiAPI\Laravel\Facades\Gemini;
 use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
 
 new #[layout('components.usercomponent.appform-layout')]
  class extends Component {
+
+    use WithFileUploads;
     
     public $first_name;
-    public $job_titles;
+    public $middle_name;
+    public $last_name;
+    public $email;
+    public $gender;
+    public $birth_date;
+    public $contact;
+    public $address;
+    public $nationality;
+    public $religion;
+    public $civil_status;
+    public $resume;
+    public $refered_by;
+    public $job_position;
+    public $notif = false;
     public Job $job;
 
     public function mount(Job $job)
@@ -18,15 +38,73 @@ new #[layout('components.usercomponent.appform-layout')]
 
     public function submit()
     {
-        dd($this->job->title);
-        // $this->validate([
-        //     'first_name' => ['required'],
-        // ]);
+
+        $validatedData = $this->validate([
+            'first_name' => ['required','min:2'],
+            'middle_name' => ['required','min:2'],
+            'last_name' => ['required','min:2'],
+            'email' => ['required','email','unique:applicants,email'],
+            'gender' => ['required'],
+            'birth_date' => ['required'],
+            'contact' => ['required'],
+            'address' => ['required'],
+            'nationality' => ['required'],
+            'religion' => ['required'],
+            'civil_status' => ['required'],
+            'resume' => ['required', File::types(['pdf'])],
+            'refered_by' => ['nullable'],
+        ]);
+
+        $pdf = $this->resume->store('resumes');
+        $validatedData['resume'] = $pdf;
+        
+        $validatedData['job_position'] = $this->job->title;
+
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf = $parser->parseFile(public_path('storage/'.$pdf));
+        $text = $pdf->getText();
+
+
+
+        $requirements = $this->job->requirements;
+
+        $res = "can you analyze this resume and check the skills that this resume has
+              " .$text . " and analyze if the skills are fit and match with" . $requirements ." 
+             and give me the percentage of the skills matches only the number of percentage. just give me a
+              number of percentage of your calculation please and dont say any explanation I just need the number I dont need any explanation or label";
+
+        $result = Gemini::geminiPro()->generateContent($res);
+
+        $result2 = $result->text();
+
+        $num = Str::remove('%',$result2);
+
+        $validatedData['score'] = $num;
+
+        if($num < 50){
+            Applicant::create($validatedData);
+            $this->dispatch('Application-completed');
+            sleep(5);
+            $this->redirect('/jobpost', navigate: true);
+        }else{
+            $validatedData['status'] = 'candidate';
+            Applicant::create($validatedData);
+            $this->dispatch('Application-completed');
+            sleep(5);
+            $this->redirect('/jobpost', navigate: true);
+        }
+
+
+        
+        
     }
     
 }; ?>
 
 <div>
+    <x-notification on="Application-completed" >
+        <x-alert title="Application completed" positive solid />
+    </x-notification>
     <div>
         <div class="w-full h-full bg-cover text-slate-50 ">
             <div class="flex items-center justify-center w-full h-full ">
@@ -38,8 +116,8 @@ new #[layout('components.usercomponent.appform-layout')]
                     </div>
                     <div class="h-[80%] w-[95%] flex-row flex p-2 bg-[#060606] bg-opacity-[80%] rounded-2xl">
                         <div class="flex-1 p-5 overflow-auto ">
-                            <h1 class="mb-3 text-xl font-bold">{{ $job->title }}</h1>
-                            <p>{{ $job->description }}</p>
+                            {{-- <h1 class="mb-3 text-xl font-bold">{{ $job->title }}</h1> --}}
+                            {{-- <p>{{ $job->description }}</p> --}}
                         </div>
                         <div class="flex-1 p-5 overflow-auto ">
                             <h1 class="mb-3 text-xl font-bold">Qualifications</h1>
@@ -67,8 +145,7 @@ new #[layout('components.usercomponent.appform-layout')]
                     <div class="space-y-4 md:flex rightform sp md:flex-col"><!-- FROM NAME TO CONTACTS -->
                         <div>
                             <label for="first_name">First Name</label>
-                            <input wire:model="s" type="text" value="tae"  class="inputs" placeholder="First Name">
-                            <input wire:model="fir" type="text" value="tae">
+                            <input wire:model="first_name" type="text"  class="inputs" placeholder="First Name">
                             <x-input-error name="first_name" />
                         </div>
                         <div>
@@ -85,7 +162,7 @@ new #[layout('components.usercomponent.appform-layout')]
                     <div class="space-y-4 leftform sp">
                         <div>
                             <label for="gender">Gender:</label>
-                            <select id="gender" name="gender" class="drop">
+                            <select id="gender" wire:model='gender' name="gender" class="drop">
                                 {{-- <option value="" disabled selected>Gender</option> --}}
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -94,8 +171,8 @@ new #[layout('components.usercomponent.appform-layout')]
                         </div>
                         <div>
                             <label for="birthday">Birthday:</label>
-                            <input wire:model="birthday" id="birthday" name="birthday" type="date" class="placeholder-gray-500 inputs" placeholder="Enter your birthday" />
-                            <x-input-error name="birthday" />
+                            <input wire:model="birth_date" id="birthday" name="birthday" type="date" class="placeholder-gray-500 inputs" placeholder="Enter your birthday" />
+                            <x-input-error name="birth_date" />
                         </div>
                         
                         <div>
@@ -115,7 +192,7 @@ new #[layout('components.usercomponent.appform-layout')]
                         </div>
                         <div>
                             <label for="email">Email:</label>
-                            <input wire:model="email" type="email" id="email" name="email" class="inputs" placeholder="example@example.com" />
+                            <input wire:model="email"  id="email" name="email" class="inputs" placeholder="example@example.com" />
                             <x-input-error name="email" />
                         </div>
                     </div>
@@ -124,8 +201,8 @@ new #[layout('components.usercomponent.appform-layout')]
                     <!-- NATIONALITY TO CIVIL -->
                     <div class="flex-1">
                         <label for="national">Nationality</label>
-                        <input wire:model="national" type="text" id="national" name="national" class="inputs w-[50%]" placeholder="Your Nationality" />
-                        <x-input-error name="national" />
+                        <input wire:model="nationality" type="text" id="national" name="national" class="inputs w-[50%]" placeholder="Your Nationality" />
+                        <x-input-error name="nationality" />
                     </div>
                     <div class="flex-1">
                         <label for="civil_status">Civil Status</label>
@@ -142,7 +219,7 @@ new #[layout('components.usercomponent.appform-layout')]
                     <!-- RELIGION TO RESUME -->
                     <div class="flex-1">
                         <label for="religion">Religion</label>
-                        <select id="religion" name="religion" class="drop">
+                        <select wire:model='religion' id="religion" name="religion" class="drop">
                             <option value="" disabled selected>Religion</option>
                             <option value="catholic">Catholic</option>
                             <option value="muslim">Muslim</option>
@@ -151,32 +228,40 @@ new #[layout('components.usercomponent.appform-layout')]
                             <option value="atheist">Atheist</option>
                         </select>
                     </div>    
-                    <div class="flex-1 md:mt-3">
+                    <div class="flex-1 md:mt-3"
+                        x-data="{ uploading: false, progress: 0 }"
+                        x-on:livewire-upload-start="uploading = true"
+                        x-on:livewire-upload-finish="uploading = false"
+                        x-on:livewire-upload-cancel="uploading = false"
+                        x-on:livewire-upload-error="uploading = false"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress"
+                    >
                         <label for="resume">Resume:</label>
-                        <input type="file" wire:model="resume"e="file" id="resume" name="resume" />
+                        <input type="file" wire:model="resume" id="resume" name="resume" />
                             <x-input-error name="resume" />
+                            <div x-show="uploading">
+                                Uploading...
+                                <progress max="100" x-bind:value="progress"></progress>
+                            </div>
                     </div>      
-                </div>
-                <div>
-                    <input value="{{ $job->title }}" type="text" wire:model="job_titles" />
                 </div>
                 <div>
                     <label for="referred_by">Referred by:</label>
                     <!-- REFERRED -->
-                    <input wire:model="referred_by" type="text" id="referred_by" name="referred_by" class="inputs" placeholder="Referred Person" />
-                    <x-input-error name="referred_by" />
+                    <input wire:model="refered_by" type="text" id="referred_by" name="referred_by" class="inputs" placeholder="Referred Person" />
+                    <x-input-error name="refered_by" />
                 </div>
             </div>
         </fieldset>
         <div class="flex items-center justify-between mt-2">
             <!-- LAST CONTAINER -->
             <div class="flex items-center">
-                <input wire:model="term" type="checkbox" id="terms" name="terms" class="" />
+                {{-- <input wire:model="term" type="checkbox" id="terms" name="terms" class="" /> --}}
                 <!-- LAST INPUT -->
                 <label for="terms">TERM AND CONDITION</label>
-                <x-input-error name="term" />
+                {{-- <x-input-error name="term" /> --}}
             </div>
-            <button type="submit" class="p-2 text-black rounded-lg bg-slate-300 w-[15%] h-fit">Submit</button>
+            <x-button type="submit" class="p-2 text-black rounded-lg w-[15%] h-fit" spinner="submit">Submit</x-button>
         </div>
     </form>
 </div>

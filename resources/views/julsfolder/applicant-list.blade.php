@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="relative">
+    <div class="relative overflow-hidden">
         <div class="h-[50px] flex items-center text-lg bg-white drop-shadow-lg mx-5 mb-5 rounded-xl px-4">
             <a href="" class="font-bold">Applicant Tracking</a>
             <x-heroicon-s-slash class="size-5"/>
@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <div class="h-[70%] mt-5 lg:mx-3">
+        <div class="h-[70%] mt-5 lg:mx-3 bg-white rounded-xl">
             <div class="flex w-full lg:justify-between md:justify-between justify-evenly items-center px-2 h-[20%]">
                 <div class="lg:w-[20%] md:w-[20%] m-5">
                     <x-input icon="magnifying-glass" placeholder="Applicant name" />

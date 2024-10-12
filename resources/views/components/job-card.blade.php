@@ -4,7 +4,7 @@ use Carbon\Carbon;
     $date = $job->created_at;
     $date = Carbon::parse($date);
 @endphp
-<a wire:click='update({{ $job->id }})'>
+<a @click="details = true" wire:click="update('{{ $job->id }}')">
     <div class="cursor-pointer mt-6 flex flex-col p-4 space-y-2 bg-gray-400 rounded-lg card sm:p-3 md:p-4 lg:p-5 sm:text-sm md:text-base lg:text-lg relative">
         <x-mini-button white solid solid class=" absolute top-2 right-2 w-7 h-7">
             <x-icon name="bookmark" />
@@ -18,7 +18,7 @@ use Carbon\Carbon;
                 <div class="flex flex-wrap space-x-4 space-y-1">
                     @foreach ($job->tags as $tag)
                     <div class="px-5 py-1 bg-black/10 hover:bg-gray-500  rounded-xl font-bold transition-colors duration-300">
-                        <p wire:click='viewTag({{ $tag->id }})' class="text-black text-sm">{{ $tag->name }}</p>
+                        <p wire:click="viewTag('{{ $tag->id }}')" class="text-black text-sm">{{ $tag->name }}</p>
                     </div>
                     @endforeach
                 </div>

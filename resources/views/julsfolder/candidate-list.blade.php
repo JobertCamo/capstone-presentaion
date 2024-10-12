@@ -29,9 +29,9 @@
             <div class=" h-[300px]">
                 <x-interview-sched/>
             </div>
-            <div class=" flex-grow sm:flex-grow">
+            {{-- <div class=" flex-grow sm:flex-grow">
                 <x-calendar-date />
-            </div>
+            </div> --}}
             </div>
         </div>
 

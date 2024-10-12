@@ -1,5 +1,5 @@
 
-<div class="flex flex-col m-3">
+<div class="flex flex-col mx-2">
     <div class=" overflow-x-auto">
         <div class="min-w-full inline-block align-middle h-screen">
             <div class="overflow-hidden rounded-xl ">

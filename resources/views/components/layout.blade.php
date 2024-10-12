@@ -16,7 +16,7 @@
                 <ul class="flex flex-row items-center Lightnav space-x-2 ">
                     <li> <x-css-menu class=" size-6 hidden lg:block  " onclick="toggleSidebar()" /></li>
                     <li> <x-css-menu  class=" size-6 lg:hidden  " onclick="togglePhoneSidebar()" /></li>
-                    <li class="hidden lg:block md:block font-light text-xl">HR Recruitment Applicant Management System</li>
+                    <li class="hidden lg:block md:block font-light text-xl select-none">HR Recruitment Applicant Management System</li>
                 </ul>
             </div>
             <div class="flex items-center space-x-3">
@@ -26,8 +26,16 @@
                 <div>
                     <x-heroicon-o-bell-alert class="size-6 shrink-0"/>
                 </div>
-                <div>
-                    <img src="{{asset('images/sqaure.png')}}" alt="" class="rounded-full w-9">
+                <div x-data="{profileDropdown: false}" class="">
+                    <img @click="profileDropdown = true" src="{{asset('images/sqaure.png')}}" alt="" class="rounded-full w-9">
+                    <div x-show="profileDropdown" x-transition x-cloak class="absolute -bottom-[5em] right-2 px-5 py-3 bg-white rounded-md">
+                        <div @click.away="profileDropdown = false">
+                            <ul class="space-y-2">
+                                <li><a wire:navigate.hover class="flex gap-1" href="">Profile<x-icon name="user" class="w-4"/></a></li>
+                                <li><a wire:navigate.hover class="flex gap-1" href="/logout">Log Out<x-icon name="arrow-up-tray" class="w-4"/></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -50,15 +58,15 @@
                                     x-transition:leave="transition ease-in duration-200"
                                     x-transition:leave-start="opacity-100 translate-y-0"
                                     x-transition:leave-end="opacity-0 translate-y-2">
-                                <li class="side"><a wire:navigate.hover href="{{ url('/job-create') }}">Job Creation</a></li>
-                                <li class="side"><a wire:navigate.hover href="{{ url('/jobpost') }}">Posting</a></li>
-                                <li class="side"><a wire:navigate.hover href="{{ url('/application') }}">Application Form</a></li>
-                                <li class="side"><a wire:navigate.hover href="{{ url('/exam') }}">Initial Questions</a></li>
+                                <li class="side {{ request()->is('job-create') }}"><a wire:navigate.hover href="/job-create">Job Creation</a></li>
+                                <li class="side"><a wire:navigate.hover href="/jobpost">Posting</a></li>
+                                <li class="side"><a wire:navigate.hover href="/application">Application Form</a></li>
+                                <li class="side"><a wire:navigate.hover href="/exam">Initial Questions</a></li>
                             </div>
                         </div>
                         <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Applicant Tracking</label>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/applicant-list') }}">Applicants</a></li>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/candidates') }}">Candidates</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/candidate-list') }}">Candidates</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/applicants') }}">All Applicants</a></li>
                         <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Onboarding</label>
                         <li class="side"><a wire:navigate.hover href="{{ url('/employees') }}">Employee List</a></li>
                         <li class="side"><a wire:navigate.hover href="{{ url('/jobscript') }}">Task List</a></li>
