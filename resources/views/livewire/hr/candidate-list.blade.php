@@ -72,15 +72,15 @@ new #[layout('components.layout')]
         return [
             'applicants' => $applicant,
             'totalApplicant' => Applicant::all(),
-            'totalFailed' => Interview::where('status', 'failed'),
-            'totalPassed' => Interview::where('status', 'completed'),
+            'totalFailed' => Interview::where('status', 'Failed'),
+            'totalPassed' => Interview::where('status', 'Passed'),
             'newApplicants' => Applicant::where('created_at', '>=', Carbon::now()->subDays(2))->get(),
         ];
     }
 
 }; ?>
 
-<div class="relative overflow-hidden">
+<div class="relative">
     <x-notification on="delete-notif" >
         <x-alert title="Applicant Deleted!" negative solid />
     </x-notification>
@@ -94,7 +94,7 @@ new #[layout('components.layout')]
         <div class="flex w-full lg:flex-row h-full flex-col">
             <div class="lg:w-[50%] h-[50%] lg:h-[100%] flex flex-wrap items-center justify-center md:h-[40%]">
                 <!-- Count Card Trigger for the Modal -->
-                <div class="count-card cursor-pointer p-4 rounded-lg" onclick="toggleSide()">
+                <div class="count-card cursor-pointer p-4 rounded-lg" >
                     <div>
                         <p class="label-count lg:text-xl sm:text-base" id="tableslide">New Applicants</p>
                         <p class="text-3xl font-extrabold text-white" >{{ $newApplicants->count() }}</p>
@@ -114,7 +114,7 @@ new #[layout('components.layout')]
                     </div>
                 </div>
 
-                <div class="count-card cursor-pointer" onclick="togglePassed()">
+                <div class="count-card cursor-pointer" >
                     <div>
                         <p class="label-count text-xl">Passed</p>
                         <p class="text-3xl font-extrabold text-white">{{ $totalPassed->count() }}</p>
@@ -124,7 +124,7 @@ new #[layout('components.layout')]
                     </div>
                 </div>
 
-                <div class="count-card" onclick="toggleFailed()">
+                <div class="count-card" >
                     <div>
                         <p class="label-count">Failed</p>
                         <p class="text-3xl font-extrabold text-white">{{ $totalFailed->count() }}</p>
@@ -229,7 +229,7 @@ new #[layout('components.layout')]
 
     {{-- RIGHT SIDE NEW APPLICANTS TABLE --}}
     {{-- ANO TOOOOO PREEEEEEEEEE  --}}
-    <div class="tableslide w-full h-screen overflow-y-auto soft-scrollbar bg-black absolute top-0 translate-x-full rounded-lg transition-all duration-500" id="table-slide">
+    {{-- <div class="tableslide w-full h-screen overflow-y-auto soft-scrollbar bg-black absolute top-0 translate-x-full rounded-lg transition-all duration-500" id="table-slide">
         <x-new-applicant/>
     </div>
     <div class="tableslide2 w-full h-screen overflow-y-auto soft-scrollbar bg-black absolute top-0 translate-x-full rounded-lg transition-all duration-500" id="table-passed">
@@ -237,5 +237,5 @@ new #[layout('components.layout')]
     </div>
     <div class="tableslide3 w-full h-screen overflow-y-auto soft-scrollbar bg-black absolute top-0 translate-x-full rounded-lg transition-all duration-500" id="table-failed">
         <x-failed-applicant/>
-    </div>
+    </div> --}}
 </div>

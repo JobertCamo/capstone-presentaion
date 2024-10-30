@@ -18,7 +18,8 @@ return new class extends Migration
             $table->dateTime('interview_date');
             $table->string('location');
             $table->string('interviewer');
-            $table->enum('status', ['scheduled', 'completed', 'failed', 'canceled']);
+            $table->string('feedback')->nullable();
+            $table->enum('status', ['scheduled', 'Passed', 'Failed', 'Canceled']);
             $table->timestamps();
         });
     }

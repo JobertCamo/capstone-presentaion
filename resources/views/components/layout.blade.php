@@ -28,8 +28,8 @@
                 </div>
                 <div x-data="{profileDropdown: false}" class="">
                     <img @click="profileDropdown = true" src="{{asset('images/sqaure.png')}}" alt="" class="rounded-full w-9">
-                    <div x-show="profileDropdown" x-transition x-cloak class="absolute -bottom-[5em] right-2 px-5 py-3 bg-white rounded-md">
-                        <div @click.away="profileDropdown = false">
+                    <div x-show="profileDropdown" x-transition x-cloak class=" absolute -bottom-[5em] right-2 px-5 py-3 bg-white rounded-md">
+                        <div @click.away="profileDropdown = false" class="">
                             <ul class="space-y-2">
                                 <li><a wire:navigate.hover class="flex gap-1" href="">Profile<x-icon name="user" class="w-4"/></a></li>
                                 <li><a wire:navigate.hover class="flex gap-1" href="/logout">Log Out<x-icon name="arrow-up-tray" class="w-4"/></a></li>
@@ -58,21 +58,81 @@
                                     x-transition:leave="transition ease-in duration-200"
                                     x-transition:leave-start="opacity-100 translate-y-0"
                                     x-transition:leave-end="opacity-0 translate-y-2">
-                                <li class="side {{ request()->is('job-create') }}"><a wire:navigate.hover href="/job-create">Job Creation</a></li>
-                                <li class="side"><a wire:navigate.hover href="/jobpost">Posting</a></li>
-                                <li class="side"><a wire:navigate.hover href="/application">Application Form</a></li>
-                                <li class="side"><a wire:navigate.hover href="/exam">Initial Questions</a></li>
+                                {{-- ============================ --}}
+                                {{-- 1st create-job --}}
+                                {{-- ============================ --}}
+                                {{-- <li 
+                                    class="side">
+                                    <a 
+                                        wire:navigate.hover href="/job-create" class="{{ request()->is('job-create') ? 'bg-amber-200 font-bold' : '' }}">
+                                        Job Creation
+                                    </a>
+                                </li> --}}
+                                {{-- ============================ --}}
+                                    {{-- 1st create-job --}}
+                                {{-- ============================ --}}
+                                {{--  --}}
+                                <li 
+                                    class="side">
+                                    <a 
+                                        wire:navigate.hover href="/create-job" class="{{ request()->is('create-job') ? 'bg-amber-200 font-bold' : '' }}">
+                                        Post a Job
+                                    </a>
+                                </li>
+                                {{--  --}}
+                                <li class="side">
+                                    <a wire:navigate.hover href="/jobpost">
+                                        Posting
+                                    </a>
+                                </li>
+                                <li class="side">
+                                    <a wire:navigate.hover href="/exam">
+                                        Initial Questions
+                                    </a>
+                                </li>
                             </div>
                         </div>
-                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Applicant Tracking</label>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/candidate-list') }}">Candidates</a></li>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/applicants') }}">All Applicants</a></li>
-                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Onboarding</label>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/employees') }}">Employee List</a></li>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/jobscript') }}">Task List</a></li>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/onboard') }}">Task Creation</a></li>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/initial') }}">Document Management</a></li>
-                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Learning Managment</label>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">
+                            Applicant Tracking
+                        </label>
+                        <li class="side">
+                            <a wire:navigate.hover href="{{ url('/candidate-list') }}" 
+                                class="{{ request()->is('candidate-list') ? 'bg-amber-200 font-bold' : '' }}">
+                                Candidates
+                            </a>
+                        </li>
+                        <li class="side">
+                            <a wire:navigate.hover href="{{ url('/applicants') }}" class="{{ request()->is('applicants') ? 'bg-amber-200 font-bold' : '' }}">
+                                All Applicants
+                            </a>
+                        </li>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">
+                            Onboarding
+                        </label>
+                        <li class="side">
+                            <a wire:navigate.hover href="{{ url('/employees') }}" class="{{ request()->is('employees') ? 'bg-amber-200 font-bold' : '' }}">
+                                New Hire List
+                            </a>
+                        </li>
+                        <li class="side">
+                            <a wire:navigate.hover href="/hr-task">
+                                Employee Tasks
+                            </a>
+                        </li>
+                        <li class="side">
+                            <a wire:navigate.hover href="/employee-dashboard">
+                                Employee Portal
+                            </a>
+                        </li>
+                        <li class="side">
+                            <a wire:navigate.hover href="/employee-task">
+                                Offboarding
+                            </a>
+                        </li>
+                        <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">
+                            Learning Managment
+                        </label>
+                        
                     </ul>
 
                     {{-- ICON SIDEBAR --}}
@@ -185,7 +245,7 @@
                         <li class="side"><a wire:navigate.hover href="{{ url('/candidates') }}">Candidates</a></li>
                         <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Onboarding</label>
                         <li class="side"><a wire:navigate.hover href="{{ url('/employees') }}">Employee List</a></li>
-                        <li class="side"><a wire:navigate.hover href="{{ url('/jobscript') }}">Task List</a></li>
+                        <li class="side"><a wire:navigate.hover href="{{ url('/employee-dashboard') }}">Task List</a></li>
                         <li class="side"><a wire:navigate.hover href="{{ url('/onboard') }}">Task Creation</a></li>
                         <li class="side"><a wire:navigate.hover href="{{ url('/initial') }}">Document Management</a></li>
                         <label for="EMPLOYEE ENGANEMENT" class="titlesidebar">Learning Managment</label>

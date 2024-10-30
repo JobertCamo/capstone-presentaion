@@ -2,10 +2,12 @@
 
 use App\Models\Job;
 use Livewire\Volt\Component;
+use Livewire\Attributes\Layout;
 
-new class extends Component {
-
-    public $jobid;
+new #[layout('components.layout')]
+class extends Component {
+    
+    public $id;
     public $title;
     public $salary;
     public $location;
@@ -13,7 +15,20 @@ new class extends Component {
     public $description;
     public $requirements;
 
-    public function submit()
+    public function mount(Job $job) {
+        
+        $this->id = $job->id;
+        $this->title = $job->title;
+        $this->salary = $job->salary;
+        $this->location = $job->location;
+        $this->schedule = $job->schedule;
+        $this->description = $job->description;
+        $this->requirements = $job->requirements;
+
+
+    }
+
+    public function saveJob()
     {
         $validated = $this->validate([
             'title' => ['required'],
@@ -25,24 +40,23 @@ new class extends Component {
         ]);
         $this->authorize('create', Job::class);
 
-        $job = Job::findOrFail($this->jobid);
+        $job = Job::findOrFail($this->id);
 
         $job->update($validated);
-
         $this->dispatch('update-notif');
+        sleep(1);
+        $this->redirect('/create-job');
 
     }
     
 }; ?>
-
-<div x-cloak x-transition x-show="editModal" class="sm:pb-5  lg:flex min-w-96 lg:w-[70%] mx-auto  mt-2 absolute inset-0 z-9 flex items-center justify-center" x-show="jobCreate" x-cloak>
-    {{-- <x-notification on="update-notif" >
-        <x-alert title="Job update!" positive solid />
-    </x-notification> --}}
-    <div class="py-3 bg-white rounded-xl shadow-2xl border-black/20 border-2  lg:w-[100%] mx-auto lg:px-20 px-8 relative">
-        <h1 class="text-2xl text-gray-700 py-2 text-start">EDIT JOB POST</h1>
-        <div class="absolute -top-2 -right-2 bg-red-"><x-button @click="editModal = false" class="w-4 h-6" rounded="2xl" negative label="X"  /></div>
-        <form wire:submit='submit'>
+<div>
+    <x-notification on="update-notif" >
+        <x-alert title="Job updated!" positive solid />
+    </x-notification>
+    <div class="py-3 lg:mt-10 bg-white rounded-xl shadow-2xl border-black/20 border-1  lg:w-[100%] mx-auto lg:px-20 px-8 relative">
+        <h1 class="text-2xl text-gray-700 py-2 text-start">EDIT JOB POST {{ $title }}</h1>
+        <form wire:submit='saveJob'>
             <hr class="-mx-20">
             <div class="py-1">
                 
@@ -73,7 +87,7 @@ new class extends Component {
                     placeholder="ex. Quezon City"
                     class="mt-2 mb-3 px-4 py-1 "
                     value=""
-                     />
+                    />
 
                     <x-native-select 
                     wire:model='schedule'
@@ -93,7 +107,7 @@ new class extends Component {
                 placeholder="write your notes"
                 class="mt-2 mb-4 px-4 py-1 "
                 value=""
-                 />
+                />
 
                 <x-textarea 
                 wire:model='requirements'
@@ -107,7 +121,7 @@ new class extends Component {
 
             </div>
 
-           
+        
 
 
             <hr class="-mx-20">

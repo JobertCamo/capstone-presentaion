@@ -1,16 +1,16 @@
 <x-layout>
     <div class=" mx-auto p-2">
         <div class="h-[50px] flex items-center text-lg bg-white drop-shadow-lg mx-5 mb-5 rounded-xl px-4">
-            <a href="" class="font-bold">Employee List Tracking</a>
+            <a href="" class="font-bold">New Hire List Tracking</a>
             <x-heroicon-s-slash class="size-5"/>
-            <a href="">Employee List</a>
+            <a href="">New Hire List</a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mx-4">
             <div class="bg-white p-6 rounded-lg shadow flex items-center">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <h2 class="text-lg font-bold">1012</h2>
-                        <p class="text-gray-500">New Employees</p>
+                        <p class="text-gray-500">New Hire</p>
                     </div>
                     <div class="text-right text-green-500">+30%</div>
                     <div>

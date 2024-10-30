@@ -113,8 +113,13 @@ class extends Component {
         
         @if($test)
               {{-- mobile --}}
-              <div class="lg:hidden flex flex-col h-full top-32 fixed inset-0 card items-center justify-center z-20" x-show="details"  x-transition x-cloak>
-        <x-preloader />
+              <div class="lg:hidden flex flex-col h-full top-32 fixed inset-0 card items-center justify-center z-20" x-show="details"  x-transition:enter="transform transition ease-out duration-500"
+                    x-transition:enter-start="translate-y-full opacity-0"
+                    x-transition:enter-end="translate-y-0 opacity-100"
+                    x-transition:leave="transform transition ease-in duration-500"
+                    x-transition:leave-start="translate-y-0 opacity-100"
+                    x-transition:leave-end="translate-y-full opacity-0" x-cloak>
+                    <x-preloader />
 
                   <div @click.away="details = false" class="flex flex-col justify-center items-center px-2">
                       <div class="absolute top-0 right-0">
@@ -139,7 +144,7 @@ class extends Component {
                   </div>
               </div>
               {{-- mobile --}}
-          @endif
+        @endif
 
         <!-- Right Column for Sorting Component (Responsive) -->
         <div class="space-y-3 flex-1 hidden h-full justify-center p-4 lg:basis-52 md:basis lg:flex md:flex sm:hidden relative">

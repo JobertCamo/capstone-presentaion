@@ -16,7 +16,7 @@
     }
 }
 .side a{
-    @apply p-3 my-2 duration-100 rounded-md hover:bg-amber-200 block;
+    @apply p-3 my-2 duration-100  hover:bg-amber-200 block;
 }
 
 .titlesidebar{
@@ -29,13 +29,13 @@
     @apply rotate-90; /* Rotate the arrow when the parent is hovered */
 }
 .inputs{
-    @apply w-full h-8 p-3 text-white bg-gray-600 rounded-md md:w-full lg:w-full hover:ring-2 hover:ring-slate-400 lg:h-8 md:h-5;
+    @apply w-full h-8 p-3 border border-black/30 text-black bg-white rounded-md md:w-full lg:w-full hover:ring-2 hover:ring-slate-400 lg:h-8 md:h-5;
 }
 .sp{
     @apply md:space-y-0 lg:space-y-2;
 }
 .drop{
-    @apply w-full bg-gray-600 border-0 rounded-md h-9 hover:ring-2 hover:ring-slate-400;
+    @apply w-full bg-white border border-black/30 rounded-md h-9 hover:ring-2 hover:ring-gray-400;
 }
 .card{
     @apply w-full p-3 bg-white drop-shadow-xl ring-gray-300 ring-opacity-50 hover:ring-2  hover:ring-yellow-500 rounded-md h-fit ring-1;
@@ -165,4 +165,11 @@ progress {
   progress::-moz-progress-bar {
     background-color: #1eff00; /* Custom progress bar color */
     border-radius: 10px 0 0 10px; /* Rounds the start of the bar */
+  }
+  .truncate-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Change this number to control the visible lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }

@@ -55,7 +55,7 @@ new #[layout('components.usercomponent.appform-layout')]
             'refered_by' => ['nullable'],
         ]);
 
-        $pdf = $this->resume->store('resumes');
+        $pdf = $this->resume->store('resumes', 'public');
         $validatedData['resume'] = $pdf;
         
         $validatedData['job_position'] = $this->job->title;
@@ -101,11 +101,11 @@ new #[layout('components.usercomponent.appform-layout')]
     
 }; ?>
 
-<div>
+<div class="bg-white rounded-xl">
     <x-notification on="Application-completed" >
         <x-alert title="Application completed" positive solid />
     </x-notification>
-    <div>
+    {{-- <div>
         <div class="w-full h-full bg-cover text-slate-50 ">
             <div class="flex items-center justify-center w-full h-full ">
                 <div class=" w-[90%] h-[80%] flex items-center justify-center flex-col">
@@ -116,8 +116,8 @@ new #[layout('components.usercomponent.appform-layout')]
                     </div>
                     <div class="h-[80%] w-[95%] flex-row flex p-2 bg-[#060606] bg-opacity-[80%] rounded-2xl">
                         <div class="flex-1 p-5 overflow-auto ">
-                            {{-- <h1 class="mb-3 text-xl font-bold">{{ $job->title }}</h1> --}}
-                            {{-- <p>{{ $job->description }}</p> --}}
+                            <h1 class="mb-3 text-xl font-bold">job</h1>
+                            <p>descr</p>
                         </div>
                         <div class="flex-1 p-5 overflow-auto ">
                             <h1 class="mb-3 text-xl font-bold">Qualifications</h1>
@@ -134,18 +134,18 @@ new #[layout('components.usercomponent.appform-layout')]
                 </div>
             </div>
         </div>  
-    </div>
+    </div> --}}
     <div class="flex flex-col items-center justify-center h-full p-3 text-md">
-        <h1 class="self-center m-0 text-2xl font-bold">Application Form</h1>
+        <h1 class="self-center m-0 text-2xl font-bold text-black">Application Form</h1>
     <form wire:submit="submit">   <!-- FORM INPUT -->
-        <fieldset class="flex p-4 border-2 w-fit"><!-- FIELD -->
-            <legend>PERSONAL DETAILS</legend>
-            <div><!-- MAIN DIV OF INPUTS -->
+        {{-- <fieldset class="flex p-4 border-2 w-fit"><!-- FIELD --> --}}
+            {{-- <legend>PERSONAL DETAILS</legend> --}}
+            <div class="text-black"><!-- MAIN DIV OF INPUTS -->
                 <div class="items-center space-y-4 lg:space-x-5 lg:flex lg:flex-row sp">
                     <div class="space-y-4 md:flex rightform sp md:flex-col"><!-- FROM NAME TO CONTACTS -->
                         <div>
                             <label for="first_name">First Name</label>
-                            <input wire:model="first_name" type="text"  class="inputs" placeholder="First Name">
+                            <input wire:model="first_name" type="text"  class="inputs" placeholder="First Name" />
                             <x-input-error name="first_name" />
                         </div>
                         <div>
@@ -161,23 +161,24 @@ new #[layout('components.usercomponent.appform-layout')]
                     </div>
                     <div class="space-y-4 leftform sp">
                         <div>
-                            <label for="gender">Gender:</label>
-                            <select id="gender" wire:model='gender' name="gender" class="drop">
+                            <label for="gender">Sex</label>
+                            <select id="gender" wire:model='gender' name="gender" class="drop" placeholder="Gender">
                                 {{-- <option value="" disabled selected>Gender</option> --}}
+                                <option value="">Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
                             <x-input-error name="gender" />
                         </div>
                         <div>
-                            <label for="birthday">Birthday:</label>
+                            <label for="birthday">Birthday</label>
                             <input wire:model="birth_date" id="birthday" name="birthday" type="date" class="placeholder-gray-500 inputs" placeholder="Enter your birthday" />
                             <x-input-error name="birth_date" />
                         </div>
                         
                         <div>
-                            <label for="contact">Contact:</label>
-                            <input wire:model="contact" id="contact" name="contact" type="tel" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" class="inputs w-[70%]" />
+                            <label for="contact">Contact</label>
+                            <input wire:model="contact" id="contact" name="contact" type="tel" pattern="[0-9]{11}" placeholder="09xxxxxxxxx" class="inputs w-[70%]" />
                             <x-input-error name="contact" />
                         </div>
                     </div>
@@ -197,7 +198,7 @@ new #[layout('components.usercomponent.appform-layout')]
                         </div>
                     </div>
                 </div>
-                <div class="flex space-x-3 lg:flex-row">
+                <div class="flex space-x-3 lg:flex-row mt-3">
                     <!-- NATIONALITY TO CIVIL -->
                     <div class="flex-1">
                         <label for="national">Nationality</label>
@@ -207,7 +208,7 @@ new #[layout('components.usercomponent.appform-layout')]
                     <div class="flex-1">
                         <label for="civil_status">Civil Status</label>
                         <select wire:model="civil_status" id="civil" name="civil" class="drop">
-                            <option value="" disabled selected>Civil Status</option>
+                            <option value="">Civil Status</option>
                             <option value="single">Single</option>
                             <option value="married">Married</option>
                             <option value="divorced">Divorced</option>
@@ -215,18 +216,19 @@ new #[layout('components.usercomponent.appform-layout')]
                         <x-input-error name="civil_status" />
                     </div>
                 </div>
-                <div class="flex flex-col space-x-3 lg:flex-row">
+                <div class="flex flex-col space-x-3 lg:flex-row mt-3">
                     <!-- RELIGION TO RESUME -->
                     <div class="flex-1">
                         <label for="religion">Religion</label>
                         <select wire:model='religion' id="religion" name="religion" class="drop">
-                            <option value="" disabled selected>Religion</option>
+                            <option value="">Religion</option>
                             <option value="catholic">Catholic</option>
                             <option value="muslim">Muslim</option>
                             <option value="inc">Iglesia ni Cristo</option>
                             <option value="bornagain">Born Again</option>
                             <option value="atheist">Atheist</option>
                         </select>
+                        <x-input-error name="religion" />
                     </div>    
                     <div class="flex-1 md:mt-3"
                         x-data="{ uploading: false, progress: 0 }"
@@ -245,23 +247,23 @@ new #[layout('components.usercomponent.appform-layout')]
                             </div>
                     </div>      
                 </div>
-                <div>
+                <div class="mt-3">
                     <label for="referred_by">Referred by:</label>
                     <!-- REFERRED -->
                     <input wire:model="refered_by" type="text" id="referred_by" name="referred_by" class="inputs" placeholder="Referred Person" />
                     <x-input-error name="refered_by" />
                 </div>
             </div>
-        </fieldset>
+        {{-- </fieldset> --}}
         <div class="flex items-center justify-between mt-2">
             <!-- LAST CONTAINER -->
             <div class="flex items-center">
-                {{-- <input wire:model="term" type="checkbox" id="terms" name="terms" class="" /> --}}
+                <input wire:model="term" type="checkbox" id="terms" name="terms" class="" />
                 <!-- LAST INPUT -->
                 <label for="terms">TERM AND CONDITION</label>
                 {{-- <x-input-error name="term" /> --}}
             </div>
-            <x-button type="submit" class="p-2 text-black rounded-lg w-[15%] h-fit" spinner="submit">Submit</x-button>
+            <x-button amber type="submit" class="p-2 text-black rounded-lg  h-fit" spinner="submit">Submit</x-button>
         </div>
     </form>
 </div>

@@ -25,7 +25,7 @@ new class extends Component {
 
         session()->regenerate();
 
-        $this->redirect('/job-create', navigate: true);
+        $this->redirect('/candidate-list', navigate: true);
 
     }
     

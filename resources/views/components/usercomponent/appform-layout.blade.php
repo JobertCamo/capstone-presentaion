@@ -7,13 +7,13 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <title>Application Form</title>
 </head>
-<body class="h-screen overflow-hidden bg-no-repeat bg-no-repea bg-gradient-to-t from-db to-lb text-cb font-roboto ">
+<body class="h-full  bg-black/40 text-cb font-roboto ">
     <nav>
         <x-usercomponent.usernav/>
     </nav>
-    <main class="h-screen overflow-auto lg:flex md:flex "><!--Application-->
-        <div class="w-full h-screen grow"><!--Container for 2 DIV-->
-            <div class="flex justify-center flex-1 w-full mb-0 mt-[10%] h-fit xl:my-10">
+    <main class=" overflow-auto lg:flex md:flex "><!--Application-->
+        <div class="w-full  grow"><!--Container for 2 DIV-->
+            <div class="flex justify-center flex-1 w-full  h-fit xl:my-10">
                 {{ $slot }}
             </div>
         </div>

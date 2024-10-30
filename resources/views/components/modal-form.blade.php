@@ -31,7 +31,6 @@
                     <div>
                         <x-phone
                         id="multiple-mask"
-                        wire:model="phone"
                         label="Contact"
                         placeholder="Phone"
                         :mask="['(###) ###-####', '+# ### ###-####', '+## ## ####-####']"

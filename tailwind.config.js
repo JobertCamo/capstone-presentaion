@@ -21,6 +21,9 @@ export default {
         'db':'#161925',
         'cb':'#CBCBCB',
         },
+        backgroundImage: {
+            'custom-gradient': 'linear-gradient(to right, #FF6B6D, #FF9A6B, #FFFA5F, #74FF5C)',
+        },
     },
     },
 
